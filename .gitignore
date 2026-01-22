@@ -1,0 +1,41 @@
+# OS / editor
+*.swp
+*.*~
+.DS_Store
+
+# Visual Studio / Rider
+.vs/
+.vscode/*
+!.vscode/settings.json
+.idea/
+.fleet/
+.cr/
+
+# User-specific
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Build output
+[Dd]ebug/
+[Rr]elease/
+[Bb]in/
+[Oo]bj/
+x64/
+x86/
+build/
+out/
+
+# Logs
+msbuild.log
+msbuild.err
+msbuild.wrn
+
+# Node / React
+node_modules/
+
+# Secrets
+appsettings.Development.json
+appsettings.Local.json
+.env
