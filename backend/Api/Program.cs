@@ -38,6 +38,8 @@ builder.Services.AddScoped<RouteRepository>();
 builder.Services.AddScoped<PassengerRepository>();
 builder.Services.AddScoped<TicketRepository>();
 builder.Services.AddScoped<SuitcasesRepository>();
+builder.Services.AddScoped<BookingRepository>();
+builder.Services.AddScoped<FilterRepository>();
 // --- 5. INICIJALIZACIJA BAZE ---
 builder.Services.AddSingleton<Neo4jInitializer>();
 
