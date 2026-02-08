@@ -97,4 +97,22 @@ public class RouteRepository
             .DetachDelete("r")
             .ExecuteWithoutResultsAsync();
     }
+
+    public async Task<object?> GetDetailedByIdAsync(int id)
+{
+    var results = await _client.Cypher
+        .Match("(f:City)<-[:FROM]-(r:Route)-[:TO]->(t:City)")
+        .Where((Route r) => r.Id == id)
+        .Return((r, f, t) => new
+        {
+            routeId = r.As<Route>().Id,
+            departure = r.As<Route>().DepartureTime,
+            arrival = r.As<Route>().ArrivalTime,
+            fromCity = f.As<City>().Name,
+            toCity = t.As<City>().Name
+        })
+        .ResultsAsync;
+
+    return results.SingleOrDefault();
+}
 }

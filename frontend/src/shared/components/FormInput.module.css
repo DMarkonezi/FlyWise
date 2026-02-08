@@ -1,0 +1,105 @@
+.formInputWrapper {
+  margin-bottom: 20px;
+}
+
+.formLabel {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #1f2937;
+  letter-spacing: 0.3px;
+}
+
+.required {
+  color: #ef4444;
+  margin-left: 2px;
+}
+
+.inputContainer {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.inputIcon {
+  position: absolute;
+  left: 12px;
+  color: #9ca3af;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.formInput {
+  width: 100%;
+  padding: 12px 14px;
+  padding-left: 40px;
+  border: 2px solid #e5e7eb;
+  border-radius: 10px;
+  font-size: 15px;
+  font-family: inherit;
+  transition: all 0.2s ease;
+  background: #ffffff;
+  color: #1f2937;
+}
+
+.formInput.withIcon {
+  padding-left: 40px;
+}
+
+.formInput:focus {
+  outline: none;
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+  background: #f9fafb;
+}
+
+.formInput:hover:not(:focus) {
+  border-color: #d1d5db;
+}
+
+.formInput:disabled {
+  background: #f3f4f6;
+  color: #9ca3af;
+  cursor: not-allowed;
+}
+
+.formInput.inputError {
+  border-color: #ef4444;
+  background: #fef2f2;
+}
+
+.formInput.inputError:focus {
+  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
+}
+
+.passwordToggle {
+  position: absolute;
+  right: 12px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #9ca3af;
+  padding: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.2s ease;
+  z-index: 2;
+}
+
+.passwordToggle:hover {
+  color: #6b7280;
+}
+
+.passwordToggle:active {
+  color: #3b82f6;
+}
+
+.inputErrorMessage {
+  display: block;
+  margin-top: 6px;
+  font-size: 13px;
+  color: #ef4444;
+  font-weight: 500;
+}

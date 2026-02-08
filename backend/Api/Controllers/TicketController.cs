@@ -11,10 +11,10 @@ public class TicketController : ControllerBase
     private readonly TicketRepository _repo;
     public TicketController(TicketRepository repo) => _repo = repo;
 
-    [HttpPost("{passengerId}/{routeId}")]
-    public async Task<IActionResult> Create(int passengerId, int routeId, [FromBody] Ticket ticket)
+    [HttpPost("{userId}/{routeId}")]
+    public async Task<IActionResult> Create(int userId, int routeId, [FromBody] Ticket ticket)
     {
-        await _repo.CreateAsync(ticket, passengerId, routeId);
+        await _repo.CreateAsync(ticket, userId, routeId);
         return Ok("Karta kreirana.");
     }
 

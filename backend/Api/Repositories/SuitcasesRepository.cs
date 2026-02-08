@@ -62,9 +62,9 @@ public class SuitcasesRepository
     public async Task<List<object>> GetDetailedAsync()
     {
         var results = await _client.Cypher
-            .Match("(p:Passenger)-[:HAS_TICKET]->(t:Ticket)-[rel:HAS_SUITCASES]->(s:Suitcases)")
+            .Match("(p:User)-[:HAS_TICKET]->(t:Ticket)-[rel:HAS_SUITCASES]->(s:Suitcases)")
             .Return((p, t, rel, s) => new {
-                Passenger = p.As<Passenger>().FirstName + " " + p.As<Passenger>().LastName,
+                User = p.As<User>().FirstName + " " + p.As<User>().LastName,
                 TicketSeat = t.As<Ticket>().SeatNumber,
                 SuitcaseId = s.As<Suitcases>().Id,
                 AllowedWeight = s.As<Suitcases>().AllowedWeight,

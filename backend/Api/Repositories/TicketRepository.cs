@@ -21,12 +21,12 @@ public class TicketRepository
     }
 
     // 1. CREATE
-    public async Task CreateAsync(Ticket ticket, int passengerId, int routeId)
+    public async Task CreateAsync(Ticket ticket, int userId, int routeId)
     {
         ticket.Id = await GetMaxId() + 1;
         await _client.Cypher
-            .Match("(p:Passenger)", "(r:Route)")
-            .Where((Passenger p) => p.Id == passengerId)
+            .Match("(p:User)", "(r:Route)")
+            .Where((User p) => p.Id == userId)
             .AndWhere((Route r) => r.Id == routeId)
             .Create("(t:Ticket {Id: $id, SeatNumber: $seat})")
             .Create("(p)-[:HAS_TICKET {PurchasedAt: $now}]->(t)")
@@ -61,22 +61,43 @@ public class TicketRepository
     }
 
     // 4. READ (Detailed)
+    // public async Task<List<object>> GetAllDetailedAsync()
+    // {
+    //     var results = await _client.Cypher
+    //         .Match("(p:User)-[:HAS_TICKET]->(t:Ticket)-[:FOR_ROUTE]->(r:Route)")
+    //         .Match("(r)-[:FROM]->(from:City), (r)-[:TO]->(to:City)")
+    //         .Return((p, t, r, from, to) => new
+    //         {
+    //             TicketId = t.As<Ticket>().Id,
+    //             Seat = t.As<Ticket>().SeatNumber,
+    //             UserName = p.As<User>().FirstName + " " + p.As<User>().LastName,
+    //             DepartureTime = r.As<Route>().DepartureTime,
+    //             RoutePath = from.As<City>().Name + " -> " + to.As<City>().Name
+    //         })
+    //         .ResultsAsync;
+    //     return results.Cast<object>().ToList();
+    // }
     public async Task<List<object>> GetAllDetailedAsync()
-    {
-        var results = await _client.Cypher
-            .Match("(p:Passenger)-[:HAS_TICKET]->(t:Ticket)-[:FOR_ROUTE]->(r:Route)")
-            .Match("(r)-[:FROM]->(from:City), (r)-[:TO]->(to:City)")
-            .Return((p, t, r, from, to) => new
-            {
-                TicketId = t.As<Ticket>().Id,
-                Seat = t.As<Ticket>().SeatNumber,
-                PassengerName = p.As<Passenger>().FirstName + " " + p.As<Passenger>().LastName,
-                DepartureTime = r.As<Route>().DepartureTime,
-                RoutePath = from.As<City>().Name + " -> " + to.As<City>().Name
-            })
-            .ResultsAsync;
-        return results.Cast<object>().ToList();
-    }
+{
+    var results = await _client.Cypher
+        .Match("(p:User)-[:HAS_TICKET]->(t:Ticket)-[:FOR_ROUTE]->(r:Route)")
+        .Match("(r)-[:FROM]->(from:City), (r)-[:TO]->(to:City)")
+        .Return((p, t, r, from, to) => new
+        {
+            TicketId = t.As<Ticket>().Id,
+            Seat = t.As<Ticket>().SeatNumber,
+            UserName = Return.As<string>(
+                "p.firstName + ' ' + p.lastName"
+            ),
+            DepartureTime = r.As<Route>().DepartureTime,
+            RoutePath = Return.As<string>(
+                "from.name + ' -> ' + to.name"
+            )
+        })
+        .ResultsAsync;
+
+    return results.Cast<object>().ToList();
+}
 
     // 5. UPDATE
     public async Task UpdateAsync(Ticket ticket)

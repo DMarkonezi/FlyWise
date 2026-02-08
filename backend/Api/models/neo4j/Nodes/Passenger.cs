@@ -1,20 +1,13 @@
-namespace Api.models.neo4j.Nodes;
-using Api.models.neo4j.Edges;
-public class Passenger
+namespace Api.models.neo4j.Nodes
 {
-    public int Id { get; set; }
-    public string FirstName { get; set; } = null!;
-    public string LastName { get; set; } = null!;
-    public string PassportNumber { get; set; } = null!;
-    public string Email { get; set; } = null!;
-
-    public HasTicket PurchaseTicket(Ticket ticket)
+    public class Passenger
     {
-        return new HasTicket
-        {
-            Passenger = this,
-            Ticket = ticket,
-            PurchasedAt = DateTime.Now
-        };
+        public int Id { get; set; }
+
+        public string FirstName { get; set; } = null!;
+        public string LastName { get; set; } = null!;
+        public string PassportNumber { get; set; } = null!;
+        public string PhoneNumber { get; set; } = null!;
+        public string Email { get; set; } = null!;
     }
 }

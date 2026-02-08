@@ -1,0 +1,57 @@
+.registerForm {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.formTitle {
+  margin: 0;
+  font-size: 28px;
+  font-weight: 700;
+  color: #1f2937;
+  letter-spacing: -0.5px;
+}
+
+.formSubtitle {
+  margin: 0;
+  font-size: 14px;
+  color: #6b7280;
+  line-height: 1.6;
+}
+
+.loginLink {
+  margin: 0;
+  text-align: center;
+  font-size: 14px;
+  color: #6b7280;
+}
+
+.loginLink a {
+  color: #3b82f6;
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.2s ease;
+}
+
+.loginLink a:hover {
+  color: #2563eb;
+}
+
+.termsText {
+  margin: 0;
+  text-align: center;
+  font-size: 12px;
+  color: #9ca3af;
+  line-height: 1.6;
+}
+
+.termsText a {
+  color: #3b82f6;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.termsText a:hover {
+  color: #2563eb;
+  text-decoration: underline;
+}

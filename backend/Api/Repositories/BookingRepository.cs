@@ -22,15 +22,15 @@ public class BookingRepository
     }
 
     // 1. REZERVACIJA (Glavna funkcija)
-    public async Task CreateBookingAsync(int passengerId, int routeId, string seatNumber, double suitcaseWeight, int suitcaseCount, double seatPrice, double suitcasePrice)
+    public async Task CreateBookingAsync(int userId, int routeId, string seatNumber, double suitcaseWeight, int suitcaseCount, double seatPrice, double suitcasePrice)
     {
         int ticketId = await GetNextId("Ticket");
         int billId = await GetNextId("Bill");
         int suitcaseId = await GetNextId("Suitcases");
 
         await _client.Cypher
-            .Match("(p:Passenger)", "(r:Route)")
-            .Where((Passenger p) => p.Id == passengerId)
+            .Match("(p:User)", "(r:Route)")
+            .Where((User p) => p.Id == userId)
             .AndWhere((Route r) => r.Id == routeId)
             // Kreiranje Ticket-a i veza
             .Create("(t:Ticket {Id: $tId, SeatNumber: $seat})")

@@ -45,4 +45,11 @@ public class BillController : ControllerBase
         await _repo.DeleteBillAsync(id);
         return Ok("Račun je uspešno obrisan iz baze.");
     }
+
+    [HttpGet("by-ticket/{ticketId}")]
+    public async Task<IActionResult> GetByTicketId(int ticketId)
+    {
+        var bill = await _repo.GetBillByTicketIdAsync(ticketId);
+        return bill != null ? Ok(bill) : NotFound("Račun za ovu kartu ne postoji.");
+    }
 }

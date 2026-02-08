@@ -1,0 +1,70 @@
+namespace Api.Models.neo4j.Edges;
+
+using Api.models.neo4j.Nodes;
+
+// Ticket -[FOR_PASSENGER]-> Passenger
+public class ForPassenger
+{
+    public Ticket? Ticket { get; set; }
+    public Passenger? Passenger { get; set; }
+}namespace Api.models.neo4j.Edges;
+using Api.models.neo4j.Nodes;
+// Ticket -[FOR_ROUTE]-> Route
+    public class ForRoute
+    {
+        public Ticket? Ticket { get; set; }
+        public Route? Route { get; set; }
+    }namespace Api.models.neo4j.Edges;
+using Api.models.neo4j.Nodes;
+// Route -[FROM]-> City
+    public class FromCity
+    {
+        public Route? Route { get; set; }
+        public City? City { get; set; }
+    }
+namespace Api.models.neo4j.Edges;
+using Api.models.neo4j.Nodes;
+// Ticket -[HAS_BILL]-> Bill
+    public class HasBill
+    {
+        public Ticket? Ticket { get; set; }
+        public Bill? Bill { get; set; }
+    }namespace Api.models.neo4j.Edges;
+using Api.models.neo4j.Nodes;
+// Flight -[HAS_ROUTE]-> Route
+    public class HasRoute
+    {
+        public Flight? Flight { get; set; }
+        public Route? Route { get; set; }
+        public int Order { get; set; }
+    }namespace Api.models.neo4j.Edges;
+using Api.models.neo4j.Nodes;
+// Ticket -[HAS_SUITCASES]-> Suitcases
+    public class HasSuitcases
+    {
+        public Ticket? Ticket { get; set; }
+        public Suitcases? Suitcases { get; set; }
+        public int Count { get; set; }
+    }namespace Api.models.neo4j.Edges;
+using Api.models.neo4j.Nodes;
+// User -[HAS_TICKET]-> Ticket
+    public class HasTicket
+    {
+        public User? User { get; set; }
+        public Ticket? Ticket { get; set; }
+        public DateTime PurchasedAt { get; set; }
+    }namespace Api.models.neo4j.Edges;
+using Api.models.neo4j.Nodes;
+// City -[IN_COUNTRY]-> Country
+    public class InCountry
+    {
+        public City? City { get; set; }
+        public Country? Country { get; set; }
+    }namespace Api.models.neo4j.Edges;
+using Api.models.neo4j.Nodes;
+// Route -[TO]-> City
+    public class ToCity
+    {
+        public Route? Route { get; set; }
+        public City? City { get; set; }
+    }

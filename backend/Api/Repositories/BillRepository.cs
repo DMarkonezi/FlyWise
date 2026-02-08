@@ -84,4 +84,15 @@ public class BillRepository
             .DetachDelete("b")
             .ExecuteWithoutResultsAsync();
     }
+
+    public async Task<Bill?> GetBillByTicketIdAsync(int ticketId)
+    {
+        var result = await _client.Cypher
+            .Match("(b:Bill)-[:BELONGS_TO]->(t:Ticket {TicketId: $ticketId})")
+            .WithParam("ticketId", ticketId)
+            .Return(b => b.As<Bill>())
+            .ResultsAsync;
+
+        return result.FirstOrDefault();
+    }
 }

@@ -13,10 +13,10 @@ public class BookingController : ControllerBase
 
     // Kreiranje kompletne rezervacije
     [HttpPost]
-    public async Task<IActionResult> BookFlight(int passengerId, int routeId, string seat, double weight, int count, double seatPrice, double suitcasePrice)
+    public async Task<IActionResult> BookFlight(int userId, int routeId, string seat, double weight, int count, double seatPrice, double suitcasePrice)
     {
         try {
-            await _repo.CreateBookingAsync(passengerId, routeId, seat, weight, count, seatPrice, suitcasePrice);
+            await _repo.CreateBookingAsync(userId, routeId, seat, weight, count, seatPrice, suitcasePrice);
             return Ok("Rezervacija uspešna. Kreirani su karta, račun i prtljag.");
         } catch (Exception ex) {
             return BadRequest(ex.Message);

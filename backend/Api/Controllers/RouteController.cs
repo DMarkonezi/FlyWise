@@ -26,6 +26,13 @@ public class RouteController : ControllerBase
         }
     }
 
+    [HttpGet("detailed/{id}")]
+    public async Task<IActionResult> GetDetailed(int id)
+    {
+        var route = await _repo.GetDetailedByIdAsync(id);
+        return route != null ? Ok(route) : NotFound();
+    }
+
     [HttpGet]
     public async Task<IActionResult> GetAll()
     {

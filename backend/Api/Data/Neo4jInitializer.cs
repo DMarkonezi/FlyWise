@@ -18,7 +18,7 @@ public class Neo4jInitializer
         
         await session.ExecuteWriteAsync(async tx => {
             // Unikatni ključevi (zamena za Primary Key u SQL-u)
-            await tx.RunAsync("CREATE CONSTRAINT IF NOT EXISTS FOR (p:Passenger) REQUIRE p.PassportNumber IS UNIQUE");
+            await tx.RunAsync("CREATE CONSTRAINT IF NOT EXISTS FOR (p:User) REQUIRE p.PassportNumber IS UNIQUE");
             await tx.RunAsync("CREATE CONSTRAINT IF NOT EXISTS FOR (f:Flight) REQUIRE f.FlightNumber IS UNIQUE");
             await tx.RunAsync("CREATE CONSTRAINT IF NOT EXISTS FOR (c:City) REQUIRE c.Id IS UNIQUE");
         });
